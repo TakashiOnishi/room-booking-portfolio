@@ -42,16 +42,16 @@ export function DayGrid({
       <table className="w-full min-w-[640px] border-collapse text-sm">
         <thead>
           <tr>
-            <th className="w-16 border-b border-slate-200 p-2 text-left font-medium text-slate-500">
+            <th className="w-16 border-b border-border-default p-2 text-left font-medium text-text-muted">
               時間
             </th>
             {resources.map((r) => (
               <th
                 key={r.id}
-                className="border-b border-l border-slate-200 p-2 text-left font-medium"
+                className="border-b border-l border-border-default p-2 text-left font-medium"
               >
                 <div>{r.name}</div>
-                <div className="text-xs font-normal text-slate-400">
+                <div className="text-xs font-normal text-text-subtle">
                   {TYPE_LABEL[r.type]}・{r.location}・{r.capacity}名
                 </div>
               </th>
@@ -61,14 +61,14 @@ export function DayGrid({
         <tbody>
           {slots.map((slot) => (
             <tr key={slot.getTime()}>
-              <td className="border-b border-slate-100 p-2 align-top text-xs text-slate-500">
+              <td className="border-b border-border-subtle p-2 align-top text-xs text-text-muted">
                 {hhmm(slot.getTime())}
               </td>
               {resources.map((r) => {
                 const b = bookingAt(r.id, slot);
                 // 予約の開始スロットのみブロック本体を描画
                 const isStart = b && b.start === slot.getTime();
-                if (b && !isStart) return <td key={r.id} className="border-l border-slate-100" />;
+                if (b && !isStart) return <td key={r.id} className="border-l border-border-subtle" />;
                 if (b && isStart) {
                   const span = Math.max(1, Math.round((b.end - b.start) / slotMs));
                   const mine = b.userId === currentUserId;
@@ -76,13 +76,13 @@ export function DayGrid({
                     <td
                       key={r.id}
                       rowSpan={span}
-                      className="border-l border-slate-100 p-1 align-top"
+                      className="border-l border-border-subtle p-1 align-top"
                     >
                       <div
                         className={`h-full rounded-md p-2 text-xs ${
                           mine
-                            ? "bg-blue-100 text-blue-900"
-                            : "bg-slate-200 text-slate-700"
+                            ? "bg-brand-soft text-brand"
+                            : "bg-surface-muted text-text-muted"
                         }`}
                       >
                         <div className="font-medium">{b.title}</div>
@@ -92,7 +92,7 @@ export function DayGrid({
                         {mine && (
                           <button
                             onClick={() => onCancel(b)}
-                            className="mt-1 text-[11px] text-red-600 underline"
+                            className="mt-1 text-[11px] text-danger underline"
                           >
                             キャンセル
                           </button>
@@ -105,7 +105,7 @@ export function DayGrid({
                   <td
                     key={r.id}
                     onClick={() => onSlotClick(r, slot)}
-                    className="cursor-pointer border-b border-l border-slate-100 p-2 hover:bg-blue-50"
+                    className="cursor-pointer border-b border-l border-border-subtle p-2 hover:bg-brand-soft"
                   />
                 );
               })}

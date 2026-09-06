@@ -41,10 +41,10 @@ export function BookingModal({ resource, slotStart, onClose, onSubmit }: Props) 
   };
 
   return (
-    <div className="fixed inset-0 z-10 flex items-center justify-center bg-black/40 p-4">
-      <div className="w-full max-w-sm rounded-lg bg-white p-5 shadow-xl">
+    <div className="fixed inset-0 z-10 flex items-center justify-center bg-backdrop p-4">
+      <div className="w-full max-w-sm rounded-lg bg-surface p-5 shadow-xl">
         <h2 className="mb-1 text-base font-semibold">予約を作成</h2>
-        <p className="mb-4 text-sm text-slate-500">
+        <p className="mb-4 text-sm text-text-muted">
           {resource.name}（{resource.location}）
         </p>
 
@@ -54,14 +54,14 @@ export function BookingModal({ resource, slotStart, onClose, onSubmit }: Props) 
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="例: 1on1 / 商談 / 集中作業"
-          className="mb-4 w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+          className="mb-4 w-full rounded-md border border-border-default bg-surface px-3 py-2 text-sm"
         />
 
         <label className="mb-1 block text-sm font-medium">時間</label>
         <select
           value={slots}
           onChange={(e) => setSlots(Number(e.target.value))}
-          className="mb-2 w-full rounded-md border border-slate-300 px-3 py-2 text-sm"
+          className="mb-2 w-full rounded-md border border-border-default bg-surface px-3 py-2 text-sm"
         >
           {[1, 2, 3, 4].map((n) => (
             <option key={n} value={n}>
@@ -69,23 +69,23 @@ export function BookingModal({ resource, slotStart, onClose, onSubmit }: Props) 
             </option>
           ))}
         </select>
-        <p className="mb-4 text-sm text-slate-500">
+        <p className="mb-4 text-sm text-text-muted">
           {hhmm(start)} 〜 {hhmm(end)}
         </p>
 
-        {error && <p className="mb-3 text-sm text-red-600">{error}</p>}
+        {error && <p className="mb-3 text-sm text-danger">{error}</p>}
 
         <div className="flex justify-end gap-2">
           <button
             onClick={onClose}
-            className="rounded-md border border-slate-300 px-4 py-2 text-sm hover:bg-slate-100"
+            className="rounded-md border border-border-default px-4 py-2 text-sm hover:bg-surface-muted"
           >
             キャンセル
           </button>
           <button
             onClick={handleSubmit}
             disabled={saving}
-            className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+            className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-on-primary hover:bg-primary-hover disabled:opacity-50"
           >
             {saving ? "保存中…" : "予約する"}
           </button>

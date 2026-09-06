@@ -63,7 +63,7 @@ export default function Home() {
   }, [user, day]);
 
   if (loading) {
-    return <div className="p-8 text-slate-500">読み込み中…</div>;
+    return <div className="p-8 text-text-muted">読み込み中…</div>;
   }
 
   if (!user) {
@@ -71,13 +71,13 @@ export default function Home() {
       <main className="flex flex-1 flex-col items-center justify-center gap-6 p-8">
         <div className="text-center">
           <h1 className="text-2xl font-semibold">🗓️ Room &amp; Booth Booking</h1>
-          <p className="mt-2 text-slate-500">
+          <p className="mt-2 text-text-muted">
             会議室・フォンブースの予約システム
           </p>
         </div>
         <button
           onClick={() => signIn()}
-          className="rounded-md bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700"
+          className="rounded-md bg-primary px-6 py-3 font-medium text-on-primary hover:bg-primary-hover"
         >
           Googleでログイン
         </button>
@@ -92,23 +92,23 @@ export default function Home() {
         <div className="mb-4 flex items-center gap-3">
           <button
             onClick={() => setDay((d) => addDays(d, -1))}
-            className="rounded-md border border-slate-300 px-3 py-1 text-sm hover:bg-slate-100"
+            className="rounded-md border border-border-default px-3 py-1 text-sm hover:bg-surface-muted"
           >
             ← 前日
           </button>
           <div className="font-medium">
-            {ymd(day)} {isToday(day) && <span className="text-blue-600">（今日）</span>}
+            {ymd(day)} {isToday(day) && <span className="text-brand">（今日）</span>}
           </div>
           <button
             onClick={() => setDay((d) => addDays(d, 1))}
-            className="rounded-md border border-slate-300 px-3 py-1 text-sm hover:bg-slate-100"
+            className="rounded-md border border-border-default px-3 py-1 text-sm hover:bg-surface-muted"
           >
             翌日 →
           </button>
           {!isToday(day) && (
             <button
               onClick={() => setDay(new Date())}
-              className="text-sm text-blue-600 underline"
+              className="text-sm text-brand underline"
             >
               今日へ
             </button>
@@ -116,13 +116,13 @@ export default function Home() {
         </div>
 
         {dataError && (
-          <p className="mb-4 rounded-md bg-red-50 p-3 text-sm text-red-700">
+          <p className="mb-4 rounded-md bg-danger-soft p-3 text-sm text-danger">
             {dataError}
           </p>
         )}
 
         {resources.length === 0 && !dataError ? (
-          <p className="text-slate-500">
+          <p className="text-text-muted">
             予約対象がありません。<code>npm run seed</code> で初期データを投入してください。
           </p>
         ) : (

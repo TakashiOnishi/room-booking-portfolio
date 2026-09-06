@@ -11,6 +11,9 @@ https://room-booking-portfolio.vercel.app で公開しています。Googleロ�
 **全ログインユーザーで共有**されます（訪問者ごとの分離なし）。予約は本人のものだけ編集・削除できますが、
 デモ用途のため予告なくデータをリセットする場合があります。
 
+[プライバシーポリシー](https://room-booking-portfolio.vercel.app/privacy) ／
+[利用規約](https://room-booking-portfolio.vercel.app/terms)
+
 ## 主な機能
 
 - 🔐 Googleアカウントでのログイン（Firebase Authentication）
